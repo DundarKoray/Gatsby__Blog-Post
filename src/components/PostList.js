@@ -11,7 +11,7 @@ const PostList = ({posts}) => {
             <h4>Personal Blog</h4>
             <div className={styles.center}>
                 {posts.map(({node}, index)=>{
-                    return <PostCard key={index} posts={node}/>
+                    return <PostCard key={index} post={node}/>
                 })}
             </div>
         </section>
