@@ -10,5 +10,19 @@ module.exports = {
         path: `src/posts`,
       }
     },
-    `gatsby-mdx`],
+    {
+      resolve: `gatsby-mdx`,
+      options:{
+        gatsbyRemarkPlugins:[
+          {
+            resolve: "gatsby-remark-images",
+            options:{
+              maxWidth: 1035,
+              sizeByPixelDensity: true,
+            },
+          },
+        ],
+      },
+    },
+  ],
 }
