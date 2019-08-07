@@ -13,7 +13,7 @@ const getPosts = graphql `
         frontmatter{
           title
           slug
-          date
+          date(formatString:"MMMM Do, YYYY")
           author
           image{
             childImageSharp{
