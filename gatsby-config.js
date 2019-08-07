@@ -1,25 +1,20 @@
 module.exports = {
   plugins: [
-    `gatsby-transformer-sharp`, 
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    
     {
       resolve: `gatsby-source-filesystem`,
-      options:{
+      options: {
         name: `posts`,
         path: `src/posts`,
-      }
+      },
     },
     {
       resolve: `gatsby-mdx`,
-      options:{
-        gatsbyRemarkPlugins:[
+      options: {
+        gatsbyRemarkPlugins: [
           {
             resolve: "gatsby-remark-images",
-            options:{
-              maxWidth: 1035,
-              sizeByPixelDensity: true,
-            },
           },
         ],
       },
