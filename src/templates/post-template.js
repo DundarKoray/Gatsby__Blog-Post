@@ -3,12 +3,12 @@ import styles from '../css/postTemplate.module.css'
 import { Link, graphql } from 'gatsby'
 import Image from 'gatsby-image'
 import Layout from '../components/layout'
-import {MDXRenderer} from 'gatsby-mdx'
+import {MDXRenderer} from 'gatsby-plugin-mdx'
 
 const postTemplate = ({data}) => {
    console.log(data)
    const {title, date, author, image} = data.mdx.frontmatter
-   const { body } = data.mdx.code
+   const { body } = data.mdx
    const img = image.childImageSharp.fluid
 
     return (
@@ -20,7 +20,7 @@ const postTemplate = ({data}) => {
                     <h4><span>by {author}</span> / <span>{date}</span></h4>
                 </div>
                 <Image fluid={img} />
-                <div> className={styles.content}
+                <div className={styles.content}>
                     <MDXRenderer>{body}</MDXRenderer>
                 </div>
             </section>
@@ -29,27 +29,23 @@ const postTemplate = ({data}) => {
 }
 
 export const query = graphql`
-query getPost($slug: String!){
+  query getPost($slug: String!) {
     mdx(frontmatter: { slug: { eq: $slug } }) {
       frontmatter {
         title
-        slug
         date(formatString: "MMMM Do, YYYY")
         author
-        image{
-          childImageSharp{
-            fluid{
+        image {
+          childImageSharp {
+            fluid {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
       }
-      code{
-        body
-      }
+      body
     }
   }
-  
 `
 
 export default postTemplate
